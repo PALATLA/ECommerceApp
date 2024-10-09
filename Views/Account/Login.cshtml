@@ -1,0 +1,202 @@
+﻿@model ECommerceApp.Models.User
+
+<div class="form-container">
+    <h2>Login</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
+    <form asp-action="Login" method="post" id="loginForm">
+        <div class="form-group">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginSubmit" disabled>Login</button>
+        @* <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div> *@
+    </form>
+
+    <p class="text-center mt-3">Don't have an account? <a asp-controller="Account" asp-action="Signup">Sign up here</a></p>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').on('input', function () {
+                if ($(this).valid()) {
+                    $('#loginSubmit').prop('disabled', false);
+                } else {
+                    $('#loginSubmit').prop('disabled', true);
+                }
+            });
+
+            $('#loginForm').on('submit', function () {
+                $(this).addClass('loading');
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
+Befor Css Code 22
+    
+@model ECommerceApp.Models.User
+
+<div class="form-container">
+    <h2>Login</h2>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+
+    <form asp-action="Login" method="post" id="loginForm">
+        <div class="form-group">
+            <label>Email</label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input asp-for="Password" type="password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" id="loginSubmit" disabled>Login</button>
+    </form>
+
+    <p class="text-center mt-3">Don't have an account? <a asp-controller="Account" asp-action="Signup">Sign up here</a></p>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').on('input', function () {
+                if ($(this).valid()) {
+                    $('#loginSubmit').prop('disabled', false);
+                } else {
+                    $('#loginSubmit').prop('disabled', true);
+                }
+            });
+        });
+    </script>
+}
+ *@
+
+
+
+
+
+
+
+
+
+
+
+
+@* 
+2nd version *@
+
+@* @model ECommerceApp.Models.User
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
+
+<form asp-action="Login" method="post" id="loginForm">
+    <div class="form-group">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary" id="loginSubmit" disabled>Login</button>
+</form>
+
+<p>Don't have an account? <a asp-controller="Account" asp-action="Signup">Sign up here</a></p>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').on('input', function () {
+                if ($(this).valid()) {
+                    $('#loginSubmit').prop('disabled', false);
+                } else {
+                    $('#loginSubmit').prop('disabled', true);
+                }
+            });
+        });
+    </script>
+}
+ *@

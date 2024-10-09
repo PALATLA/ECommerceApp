@@ -1,0 +1,140 @@
+﻿@model IEnumerable<ECommerceApp.Models.Product>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Welcome, @ViewBag.UserName!</h2>
+        <form asp-action="Logout" asp-controller="Account" method="post">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+        <a asp-action="About" asp-controller="Info" class="btn btn-info ml-2">Info</a>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="text-right mb-3">
+        <a asp-action="Create" class="btn btn-success">Add New Product</a>
+    </div>
+
+
+   @*  <form method="get">
+        <input type="text" name="search" placeholder="Search products..." value="@Context.Request.Query["search"]" />
+        <button type="submit">Search</button>
+    </form> *@
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Description</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+2nd final version before edited
+    
+@model IEnumerable<ECommerceApp.Models.Product>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Welcome, @ViewBag.UserName!</h2>
+        <form asp-action="Logout" asp-controller="Account" method="post">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <div class="text-right mb-3">
+        <a asp-action="Create" class="btn btn-success">Add New Product</a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Price</td>
+                    <td>@product.Description</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@product.ProductId" class="btn btn-primary">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@product.ProductId" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+ *@
+
+
+
+
+
+
+
+@* 
+2nd version
+
+@model IEnumerable<ECommerceApp.Models.Product>
+
+<h2>Products</h2>
+<ul>
+    @foreach (var product in Model)
+    {
+        <li>@product.Name - @product.Price</li>
+    }
+</ul>
+
+<form asp-action="Logout" asp-controller="Account" method="post">
+    <button type="submit" class="btn btn-danger">Logout</button>
+</form>
+ *@
